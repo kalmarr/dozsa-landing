@@ -37,6 +37,9 @@
     <!-- GLightbox -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 
+    <!-- Booking Wizard CSS -->
+    <link rel="stylesheet" href="booking-wizard.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/style.css">
@@ -215,113 +218,8 @@
                 <small class="text-muted">Ajánlatot érkezése előtt legalább 2 nappal kérhet</small>
             </p>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <!-- Progress Bar -->
-                    <div class="wizard-progress mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="progress-step active" data-step="1">
-                            <div class="progress-circle">1</div>
-                            <div class="progress-label">Dátum</div>
-                        </div>
-                        <div class="progress-step" data-step="2">
-                            <div class="progress-circle">2</div>
-                            <div class="progress-label">Létszám</div>
-                        </div>
-                        <div class="progress-step" data-step="3">
-                            <div class="progress-circle">3</div>
-                            <div class="progress-label">Adatok</div>
-                        </div>
-                        <div class="progress-step" data-step="4">
-                            <div class="progress-circle">4</div>
-                            <div class="progress-label">Küldés</div>
-                        </div>
-                    </div>
-
-                    <!-- Wizard Form -->
-                    <div class="booking-form-card" data-aos="fade-up" data-aos-delay="300">
-                        <form id="bookingForm" method="POST" action="php/send-booking.php">
-
-                            <!-- Step 1: Dates -->
-                            <div class="wizard-step active" data-step="1">
-                                <h4 class="mb-4 text-center">Mikor érkezik?</h4>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="checkin" class="form-label">Érkezés <span class="text-danger">*</span></label>
-                                        <input type="date" class="form-control form-control-lg" id="checkin" name="checkin" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="checkout" class="form-label">Távozás <span class="text-danger">*</span></label>
-                                        <input type="date" class="form-control form-control-lg" id="checkout" name="checkout" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Step 2: Guests -->
-                            <div class="wizard-step" data-step="2">
-                                <h4 class="mb-4 text-center">Hány fő érkezik?</h4>
-                                <div class="mb-3">
-                                    <label for="guests" class="form-label">Vendégek száma <span class="text-danger">*</span></label>
-                                    <select class="form-select form-select-lg" id="guests" name="guests" required>
-                                        <option value="">Válasszon...</option>
-                                        <option value="1">1 fő</option>
-                                        <option value="2">2 fő</option>
-                                        <option value="3">3 fő</option>
-                                        <option value="4">4 fő</option>
-                                    </select>
-                                    <small class="form-text text-muted">Az apartman 2 hálószobával rendelkezik, együtt bérelhető</small>
-                                </div>
-                            </div>
-
-                            <!-- Step 3: Contact Info -->
-                            <div class="wizard-step" data-step="3">
-                                <h4 class="mb-4 text-center">Kapcsolattartási adatok</h4>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Teljes név <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-lg" id="name" name="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email cím <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control form-control-lg" id="email" name="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Telefonszám <span class="text-danger">*</span></label>
-                                    <input type="tel" class="form-control form-control-lg" id="phone" name="phone" required>
-                                </div>
-                            </div>
-
-                            <!-- Step 4: Message & Submit -->
-                            <div class="wizard-step" data-step="4">
-                                <h4 class="mb-4 text-center">Van valami különleges kérése?</h4>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Üzenet (opcionális)</label>
-                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Írja le különleges kéréseit..."></textarea>
-                                </div>
-                                <div class="mb-4 form-check">
-                                    <input type="checkbox" class="form-check-input" id="privacy" required>
-                                    <label class="form-check-label" for="privacy">
-                                        Elfogadom az <a href="privacy.html" target="_blank">adatvédelmi szabályzatot</a> <span class="text-danger">*</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Navigation Buttons -->
-                            <div class="wizard-buttons text-center mt-4">
-                                <button type="button" class="btn btn-outline-secondary btn-lg wizard-prev me-2" style="display: none;">
-                                    <i class="fas fa-arrow-left me-2"></i>Vissza
-                                </button>
-                                <button type="button" class="btn btn-primary btn-lg wizard-next">
-                                    Tovább<i class="fas fa-arrow-right ms-2"></i>
-                                </button>
-                                <button type="submit" class="btn btn-primary btn-lg wizard-submit" style="display: none;">
-                                    <i class="fas fa-paper-plane me-2"></i>Ajánlatot kérek
-                                </button>
-                            </div>
-
-                            <div id="formMessage" class="mt-4" style="display: none;"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <!-- React Booking Wizard -->
+            <div id="booking-wizard-root"></div>
         </div>
     </section>
 
@@ -414,7 +312,9 @@
     <script src="js/main.js"></script>
     <script src="js/slider.js"></script>
     <script src="js/gallery.js"></script>
-    <script src="js/wizard.js"></script>
+
+    <!-- React Booking Wizard -->
+    <script type="module" src="booking-wizard.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,28 @@
+ÚJ FOGLALÁS ÉRKEZETT - Dózsa Apartman
+==========================================
+
+VENDÉG ADATAI:
+--------------
+Név: {{name}}
+Email: {{email}}
+Telefon: {{phone}}
+
+FOGLALÁS RÉSZLETEI:
+-------------------
+Vendégek száma: {{guests}} fő
+Érkezés: {{checkIn}}
+Távozás: {{checkOut}}
+
+ÜZENET A VENDÉGTŐL:
+-------------------
+{{message}}
+
+==========================================
+
+Kérjük, vedd fel a kapcsolatot a vendéggel mielőbb!
+
+Email: {{email}}
+Telefon: {{phone}}
+
+---
+Ez egy automatikus értesítés a Dózsa Apartman foglalási rendszeréből.

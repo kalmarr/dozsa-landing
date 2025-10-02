@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for booking wizard */
+.booking-wizard {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.booking-wizard h1,
+.booking-wizard h2,
+.booking-wizard h3 {
+  font-family: 'Playfair Display', serif;
+}
