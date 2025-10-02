@@ -1,0 +1,11 @@
+.git
+.gitignore
+.claude
+node_modules
+booking-wizard-react/node_modules
+booking-wizard-react/dist
+*.md
+.env
+ftp-config.json
+deploy-config.json
+test-wizard.html
