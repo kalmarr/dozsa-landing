@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>Dózsa Apartman Szeged - Polgári elegancia a belvárosban</title>
+    <meta name="description" content="Modern, felújított apartman Szeged belvárosában. Két szoba, két fürdőszoba, teljesen felszerelt. Ideális pároknak, családoknak, üzleti utazóknak.">
+    <meta name="keywords" content="apartman szeged, szállás szeged, dózsa apartman, szeged szálláshely, apartman bérbeadás szeged">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dózsa Apartman Szeged">
+    <meta property="og:description" content="Polgári elegancia a belváros szívében - Modern apartman Szegeden">
+    <meta property="og:image" content="images/slides/slide-01.jpg">
+    <meta property="og:url" content="https://dozsa-apartman-szeged.hu">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/logo/favicon.ico">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- GLightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Structured Data - JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Accommodation",
+      "name": "Dózsa Apartman Szeged",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Dózsa utca 5",
+        "addressLocality": "Szeged",
+        "postalCode": "6720",
+        "addressCountry": "HU"
+      },
+      "telephone": "+36-XX-XXX-XXXX",
+      "image": "images/slides/slide-01.jpg"
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <img src="images/logo/DozsaApartmanSzegedKislogo.png" alt="Dózsa Apartman Szeged Logo" class="logo-small">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rolunk">Rólunk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#apartman">Apartman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Kapcsolat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-cta" href="#ajanlatkeres">Ajánlatkérés</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Slider -->
+    <section id="home" class="hero-section">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('images/slides/slide-01.jpg');">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide" style="background-image: url('images/slides/slide-02.jpg');">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide" style="background-image: url('images/slides/slide-03.jpg');">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide" style="background-image: url('images/slides/slide-04.jpg');">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-slide" style="background-image: url('images/slides/slide-05.jpg');">
+                <div class="hero-overlay"></div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <div class="container">
+                <img src="images/logo/DozsaApartmanSzegedLogo.png" alt="Dózsa Apartman Szeged" class="hero-logo" data-aos="fade-up">
+                <h1 data-aos="fade-up" data-aos-delay="200">Dózsa Apartman Szeged</h1>
+                <p class="hero-tagline" data-aos="fade-up" data-aos-delay="400">Polgári elegancia a belváros szívében</p>
+                <a href="#ajanlatkeres" class="btn btn-hero" data-aos="fade-up" data-aos-delay="600">Ajánlatkérés</a>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="slider-controls">
+            <button class="slider-arrow slider-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow slider-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <div class="slider-dots"></div>
+    </section>
+
+    <!-- Rólunk Section -->
+    <section id="rolunk" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title">Rólunk</h2>
+                    <div class="section-content">
+                        <p>A Dózsa Apartman Szeged saját vállalkozás keretében működik, tulajdonosai Mónika és Róbert. Ingatlanunk 2019 végén teljes felújításon esett át azzal a céllal, hogy egy kényelmes, a mai kor elvárásainak megfelelő, modern apartmant hozzunk létre.</p>
+
+                        <p>A vállalkozói életben eltöltött több mint 20 év során mindig is szolgáltatást nyújtottunk, amely közben mi magunk is megtapasztaltuk, hogy mennyire sokfélék az emberek és igényeik. Ezért hisszük azt, hogy egy nyaralás, kirándulás vagy akár üzleti utazás során mindenki számára fontos, hogy hol foglal szállást, és milyen körülmények között tölti az erre szánt időt.</p>
+
+                        <p>Vendégszerető és barátságos szálláshelyet álmodtunk meg, amelyet a Dózsa Apartmanban valósítottunk meg. Vendégeinket személyesen fogadjuk, érkezésüket követően bemutatjuk az apartmant, a foglalt szobájukat, átadunk néhány hasznos információt, majd hagyjuk, hogy zavartalanul élvezzék tartózkodásukat.</p>
+
+                        <p class="signature">Várjuk Önöket szeretettel Szegeden!<br>
+                        <strong>Mónika & Róbert</strong></p>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="about-image">
+                        <img src="images/about/monika-robert.jpg" alt="Mónika és Róbert" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apartman Section -->
+    <section id="apartman" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">Az Apartman</h2>
+
+            <!-- Rooms -->
+            <div class="row mt-5">
+                <div class="col-lg-6 mb-4" data-aos="fade-up">
+                    <div class="room-card">
+                        <div class="room-main-image" id="room1MainImage">
+                            <!-- Main image will be dynamically loaded -->
+                        </div>
+                        <div class="room-content">
+                            <h3>Szoba 1</h3>
+                            <p>Tágas, világos szoba modern berendezéssel és minden komforttal.</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-bed"></i> Franciaágy</span>
+                                <span><i class="fas fa-tv"></i> Smart TV</span>
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-snowflake"></i> Légkondi</span>
+                            </div>
+                        </div>
+                        <!-- Hidden gallery for lightbox -->
+                        <div class="room-gallery-hidden" id="room1Gallery"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="room-card">
+                        <div class="room-main-image" id="room2MainImage">
+                            <!-- Main image will be dynamically loaded -->
+                        </div>
+                        <div class="room-content">
+                            <h3>Szoba 2</h3>
+                            <p>Hangulatos hálószoba klasszikus stílusban, minden kényelemmel.</p>
+                            <div class="room-features">
+                                <span><i class="fas fa-bed"></i> Franciaágy</span>
+                                <span><i class="fas fa-tv"></i> Smart TV</span>
+                                <span><i class="fas fa-wifi"></i> WiFi</span>
+                                <span><i class="fas fa-snowflake"></i> Légkondi</span>
+                            </div>
+                        </div>
+                        <!-- Hidden gallery for lightbox -->
+                        <div class="room-gallery-hidden" id="room2Gallery"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ajánlatkérés Section -->
+    <section id="ajanlatkeres" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center" data-aos="fade-up">Ajánlatkérés</h2>
+            <p class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+                Töltse ki az alábbi űrlapot és hamarosan felvesszük Önnel a kapcsolatot!<br>
+                <small class="text-muted">Ajánlatot érkezése előtt legalább 2 nappal kérhet</small>
+            </p>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Progress Bar -->
+                    <div class="wizard-progress mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="progress-step active" data-step="1">
+                            <div class="progress-circle">1</div>
+                            <div class="progress-label">Dátum</div>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="progress-circle">2</div>
+                            <div class="progress-label">Létszám</div>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="progress-circle">3</div>
+                            <div class="progress-label">Adatok</div>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="progress-circle">4</div>
+                            <div class="progress-label">Küldés</div>
+                        </div>
+                    </div>
+
+                    <!-- Wizard Form -->
+                    <div class="booking-form-card" data-aos="fade-up" data-aos-delay="300">
+                        <form id="bookingForm" method="POST" action="php/send-booking.php">
+
+                            <!-- Step 1: Dates -->
+                            <div class="wizard-step active" data-step="1">
+                                <h4 class="mb-4 text-center">Mikor érkezik?</h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="checkin" class="form-label">Érkezés <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control form-control-lg" id="checkin" name="checkin" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="checkout" class="form-label">Távozás <span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control form-control-lg" id="checkout" name="checkout" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Guests -->
+                            <div class="wizard-step" data-step="2">
+                                <h4 class="mb-4 text-center">Hány fő érkezik?</h4>
+                                <div class="mb-3">
+                                    <label for="guests" class="form-label">Vendégek száma <span class="text-danger">*</span></label>
+                                    <select class="form-select form-select-lg" id="guests" name="guests" required>
+                                        <option value="">Válasszon...</option>
+                                        <option value="1">1 fő</option>
+                                        <option value="2">2 fő</option>
+                                        <option value="3">3 fő</option>
+                                        <option value="4">4 fő</option>
+                                    </select>
+                                    <small class="form-text text-muted">Az apartman 2 hálószobával rendelkezik, együtt bérelhető</small>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Contact Info -->
+                            <div class="wizard-step" data-step="3">
+                                <h4 class="mb-4 text-center">Kapcsolattartási adatok</h4>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Teljes név <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email cím <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Telefonszám <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control form-control-lg" id="phone" name="phone" required>
+                                </div>
+                            </div>
+
+                            <!-- Step 4: Message & Submit -->
+                            <div class="wizard-step" data-step="4">
+                                <h4 class="mb-4 text-center">Van valami különleges kérése?</h4>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Üzenet (opcionális)</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Írja le különleges kéréseit..."></textarea>
+                                </div>
+                                <div class="mb-4 form-check">
+                                    <input type="checkbox" class="form-check-input" id="privacy" required>
+                                    <label class="form-check-label" for="privacy">
+                                        Elfogadom az <a href="privacy.html" target="_blank">adatvédelmi szabályzatot</a> <span class="text-danger">*</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Navigation Buttons -->
+                            <div class="wizard-buttons text-center mt-4">
+                                <button type="button" class="btn btn-outline-secondary btn-lg wizard-prev me-2" style="display: none;">
+                                    <i class="fas fa-arrow-left me-2"></i>Vissza
+                                </button>
+                                <button type="button" class="btn btn-primary btn-lg wizard-next">
+                                    Tovább<i class="fas fa-arrow-right ms-2"></i>
+                                </button>
+                                <button type="submit" class="btn btn-primary btn-lg wizard-submit" style="display: none;">
+                                    <i class="fas fa-paper-plane me-2"></i>Ajánlatot kérek
+                                </button>
+                            </div>
+
+                            <div id="formMessage" class="mt-4" style="display: none;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galéria Section -->
+    <section id="galeria" class="section-padding bg-light">
+        <div class="container">
+            <!-- Gallery Filter -->
+            <div class="gallery-section">
+                <h3 class="text-center mb-4" data-aos="fade-up">Galéria</h3>
+                <div class="gallery-filters text-center mb-4" data-aos="fade-up">
+                    <button class="filter-btn active" data-filter="all">Összes</button>
+                    <button class="filter-btn" data-filter="bathrooms">Fürdőszobák</button>
+                    <button class="filter-btn" data-filter="interior">Belső terek</button>
+                    <button class="filter-btn" data-filter="exterior">Külső</button>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery items will be dynamically loaded -->
+                </div>
+            </div>
+
+            <!-- Floor Plan -->
+            <div class="floorplan-section mt-5">
+                <h3 class="text-center mb-4" data-aos="fade-up">Apartman alaprajz</h3>
+                <div class="text-center" data-aos="zoom-in">
+                    <a href="images/floorplan/Dozsa-alaprajz.jpg" class="glightbox">
+                        <img src="images/floorplan/Dozsa-alaprajz.jpg" alt="Apartman alaprajz" class="img-fluid floorplan-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <img src="images/logo/DozsaApartmanSzegedKislogo.png" alt="Dózsa Apartman Szeged" class="footer-logo mb-3">
+                    <h5>Dózsa Apartman Szeged</h5>
+                    <p>Polgári elegancia a belváros szívében</p>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5>Gyors linkek</h5>
+                    <ul class="footer-links">
+                        <li><a href="#rolunk">Rólunk</a></li>
+                        <li><a href="#apartman">Apartman</a></li>
+                        <li><a href="contact.html">Kapcsolat</a></li>
+                        <li><a href="#ajanlatkeres">Ajánlatkérés</a></li>
+                        <li><a href="privacy.html">Adatvédelem</a></li>
+                        <li><a href="terms.html">ÁSZF</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5>Kapcsolat</h5>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Szeged 6720, Dózsa utca 5</li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@dozsa-apartman-szeged.hu">info@dozsa-apartman-szeged.hu</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+36XXXXXXXXX">+36 XX XXX XXXX</a></li>
+                    </ul>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.booking.com/hotel/hu/dozsa-apartman-szeged.hu.html" target="_blank" class="social-link"><i class="fas fa-bed"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dózsa Apartman Szeged. Minden jog fenntartva.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- GLightbox -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/wizard.js"></script>
+
+</body>
+</html>

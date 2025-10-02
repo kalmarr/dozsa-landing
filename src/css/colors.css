@@ -1,0 +1,41 @@
+/*
+ * Dózsa Apartman Szeged - Color Variables
+ * Polgári elegancia színpaletta
+ */
+
+:root {
+    /* Primary Brown Colors */
+    --primary-brown: #8B4513;
+    --primary-brown-light: #A0522D;
+    --primary-brown-lighter: #D2691E;
+
+    /* Secondary Beige Colors */
+    --secondary-beige: #F5DEB3;
+    --secondary-beige-dark: #DEB887;
+    --secondary-beige-light: #FAEBD7;
+
+    /* Accent Colors */
+    --white: #FFFFFF;
+    --off-white: #FFFAF0;
+    --off-white-light: #FAF0E6;
+    --gold-accent: #DAA520;
+
+    /* Text Colors */
+    --text-dark: #5D4037;
+    --text-darker: #3E2723;
+    --text-light: #FFFFFF;
+
+    /* Background Colors */
+    --bg-light: #FAF0E6;
+    --bg-white: #FFFFFF;
+
+    /* Overlay */
+    --overlay-brown: rgba(139, 69, 19, 0.4);
+    --overlay-dark: rgba(0, 0, 0, 0.5);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
