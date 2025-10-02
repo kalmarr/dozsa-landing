@@ -5,7 +5,6 @@ import { hu } from 'date-fns/locale';
 import type { StepProps } from '../../types/booking';
 import { Button } from '../UI/Button';
 import { blockedDates } from '../../config/blocked-dates';
-import 'react-day-picker/dist/style.css';
 
 export const DatePicker: React.FC<StepProps> = ({ data, onNext, onBack }) => {
   const [range, setRange] = React.useState<DateRange | undefined>({

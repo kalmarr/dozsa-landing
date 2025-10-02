@@ -13,12 +13,52 @@
   font-family: 'Playfair Display', serif;
 }
 
-/* Calendar (react-day-picker) custom styles */
+/* Calendar (react-day-picker) - completely custom, no defaults */
 .rdp {
-  --rdp-accent-color: #8B4513 !important;
-  --rdp-background-color: #F5DEB3 !important;
-  --rdp-accent-color-dark: #654321 !important;
-  --rdp-outline: 2px solid #8B4513 !important;
+  --rdp-accent-color: #8B4513;
+  --rdp-accent-background-color: #F5DEB3;
+  --rdp-background-color: #F5DEB3;
+  --rdp-accent-color-dark: #654321;
+  --rdp-outline: 2px solid #8B4513;
+  --rdp-day-height: 44px;
+  --rdp-day-width: 44px;
+  --rdp-day_button-border-radius: 100%;
+  --rdp-day_button-height: 42px;
+  --rdp-day_button-width: 42px;
+  --rdp-selected-border: 2px solid #8B4513;
+  --rdp-today-color: #DAA520;
+  --rdp-range_middle-background-color: #F5DEB3;
+  --rdp-range_start-date-background-color: #8B4513;
+  --rdp-range_end-date-background-color: #8B4513;
+}
+
+.rdp-root {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.rdp-day {
+  width: var(--rdp-day-width);
+  height: var(--rdp-day-height);
+  text-align: center;
+}
+
+.rdp-day_button {
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--rdp-day_button-width);
+  height: var(--rdp-day_button-height);
+  border: 2px solid transparent;
+  border-radius: var(--rdp-day_button-border-radius);
+}
+
+.rdp-months {
+  display: flex;
+  gap: 2rem;
 }
 
 .rdp-day_selected {
