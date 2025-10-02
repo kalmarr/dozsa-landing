@@ -18,3 +18,8 @@ Thumbs.db
 
 # Claude
 .claude/
+
+# FTP credentials - NEVER commit these!
+.env
+ftp-config.json
+deploy-config.json
