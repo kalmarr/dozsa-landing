@@ -6,15 +6,19 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    lib: {
-      entry: './src/main.tsx',
-      name: 'BookingWizard',
-      formats: ['iife'],
-      fileName: () => 'booking-wizard.js',
-    },
     rollupOptions: {
+      input: {
+        main: './index.html',
+      },
       output: {
-        assetFileNames: 'booking-wizard.[ext]',
+        entryFileNames: 'booking-wizard.js',
+        chunkFileNames: 'booking-wizard-[name].js',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'booking-wizard.css';
+          }
+          return 'assets/[name].[ext]';
+        },
       },
     },
   },
