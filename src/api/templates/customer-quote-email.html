@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajánlatkérés fogadva</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Georgia', serif; background-color: #f5f0eb;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f0eb; padding: 40px 20px;">
+        <tr>
+            <td align="center">
+                <!-- Main Container -->
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background-color: #8B4513; padding: 30px 40px; text-align: center;">
+                            <h1 style="color: #f5f0eb; margin: 0; font-size: 28px; font-family: 'Georgia', serif;">Dózsa Apartman Szeged</h1>
+                            <p style="color: #f5f0eb; margin: 10px 0 0; font-size: 14px; font-style: italic;">Polgári elegancia a belváros szívében</p>
+                        </td>
+                    </tr>
+
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 40px;">
+                            <h2 style="color: #8B4513; margin: 0 0 20px; font-size: 22px;">Kedves {{LAST_NAME}} {{FIRST_NAME}}!</h2>
+
+                            <p style="color: #333; line-height: 1.8; margin: 0 0 20px; font-size: 16px;">
+                                Köszönjük érdeklődését. Az alábbi adatok alapján rögzítettük az ajánlatkérést:
+                            </p>
+
+                            <!-- Booking Details -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #faf8f6; border-left: 4px solid #8B4513; border-radius: 5px; margin: 20px 0;">
+                                <tr>
+                                    <td style="padding: 20px;">
+                                        <p style="margin: 0 0 12px; color: #333; font-size: 15px;">
+                                            <strong style="color: #8B4513;">Vendégek:</strong> {{GUESTS_TOTAL}} fő (Felnőtt {{ADULTS}}, Pótágy {{EXTRA_BED}}, Gyerek 3–4 {{CHILD_3TO4}}, Gyerek 0–2 {{CHILD_0TO2}})
+                                        </p>
+                                        <p style="margin: 0 0 12px; color: #333; font-size: 15px;">
+                                            <strong style="color: #8B4513;">Érkezés:</strong> {{CHECK_IN_FORMATTED}}
+                                        </p>
+                                        <p style="margin: 0 0 12px; color: #333; font-size: 15px;">
+                                            <strong style="color: #8B4513;">Távozás:</strong> {{CHECK_OUT_FORMATTED}}
+                                        </p>
+                                        <p style="margin: 0; color: #333; font-size: 15px;">
+                                            <strong style="color: #8B4513;">Éjszakák száma:</strong> {{NIGHTS}} éj
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- Contact Details -->
+                            <h3 style="color: #8B4513; margin: 30px 0 15px; font-size: 18px;">Elérhetőségek:</h3>
+                            <p style="margin: 0 0 8px; color: #333; font-size: 15px;">
+                                <strong style="color: #8B4513;">Telefon:</strong> {{PHONE}}
+                            </p>
+                            <p style="margin: 0 0 20px; color: #333; font-size: 15px;">
+                                <strong style="color: #8B4513;">E-mail:</strong> {{EMAIL}}
+                            </p>
+
+                            <!-- Message (if provided) -->
+                            {{#IF_MESSAGE}}
+                            <h3 style="color: #8B4513; margin: 30px 0 15px; font-size: 18px;">Üzenet:</h3>
+                            <p style="margin: 0 0 20px; color: #333; font-size: 15px; line-height: 1.6;">
+                                {{MESSAGE}}
+                            </p>
+                            {{/IF_MESSAGE}}
+
+                            <div style="margin: 30px 0 0; padding: 20px; background-color: #faf8f6; border-radius: 5px;">
+                                <p style="margin: 0; color: #333; font-size: 15px; line-height: 1.8;">
+                                    Hamarosan felvesszük Önnel a kapcsolatot a részletekkel és az árral.
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f5f0eb; padding: 30px 40px; text-align: center;">
+                            <p style="margin: 0 0 10px; color: #8B4513; font-size: 16px; font-weight: bold;">Üdvözlettel,<br>Dózsa Apartman Szeged</p>
+                            <p style="margin: 15px 0 0; color: #666; font-size: 14px;">
+                                Szeged 6720, Dózsa utca 5<br>
+                                Telefon: +36 XX XXX XXXX<br>
+                                E-mail: info@dozsa-apartman-szeged.hu<br>
+                                Web: www.dozsa-apartman-szeged.hu
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

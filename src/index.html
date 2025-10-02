@@ -35,14 +35,12 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- GLightbox -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-
-    <!-- Booking Wizard CSS -->
-    <link rel="stylesheet" href="booking-wizard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/css/glightbox.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/colors.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quote-wizard.css">
     <link rel="stylesheet" href="css/responsive.css">
 
     <!-- Structured Data - JSON-LD -->
@@ -212,14 +210,21 @@
     <!-- Ajánlatkérés Section -->
     <section id="ajanlatkeres" class="section-padding">
         <div class="container">
-            <h2 class="section-title text-center" data-aos="fade-up">Ajánlatkérés</h2>
-            <p class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">
-                Töltse ki az alábbi űrlapot és hamarosan felvesszük Önnel a kapcsolatot!<br>
-                <small class="text-muted">Ajánlatot érkezése előtt legalább 2 nappal kérhet</small>
-            </p>
+            <h2 class="section-title text-center" data-aos="fade-up">Természetközeli feltöltődés egy hangulatos faházban</h2>
+            <div class="text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+                <span class="quote-tag">eseményekhez ideális</span>
+                <span class="quote-tag-separator">•</span>
+                <span class="quote-tag">központhoz közel</span>
+            </div>
 
-            <!-- React Booking Wizard -->
-            <div id="booking-wizard-root"></div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Booking Wizard -->
+                    <div id="quoteWizard" class="quote-wizard">
+                        <!-- Wizard akan dimuat oleh wizard.js -->
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -306,15 +311,13 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- GLightbox -->
-    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"></script>
 
     <!-- Custom JS -->
     <script src="js/main.js"></script>
     <script src="js/slider.js"></script>
     <script src="js/gallery.js"></script>
-
-    <!-- React Booking Wizard -->
-    <script type="module" src="booking-wizard.js"></script>
+    <script src="js/wizard.js"></script>
 
 </body>
 </html>

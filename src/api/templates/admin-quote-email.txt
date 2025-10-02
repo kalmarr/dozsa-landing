@@ -1,0 +1,31 @@
+ÚJ AJÁNLATKÉRÉS ÉRKEZETT - Dózsa Apartman Szeged
+================================================
+
+VENDÉG ADATOK:
+--------------
+Név: {{LAST_NAME}} {{FIRST_NAME}}
+Telefon: {{PHONE}}
+E-mail: {{EMAIL}}
+
+FOGLALÁSI ADATOK:
+-----------------
+Érkezés: {{CHECK_IN_FORMATTED}}
+Távozás: {{CHECK_OUT_FORMATTED}}
+Éjszakák száma: {{NIGHTS}} éj
+
+VENDÉGEK:
+---------
+Összesen: {{GUESTS_TOTAL}} fő
+- Felnőtt: {{ADULTS}}
+- Pótágy: {{EXTRA_BED}}
+- Gyerek (3-4 év): {{CHILD_3TO4}}
+- Gyerek (0-2 év): {{CHILD_0TO2}}
+
+ÜZENET:
+-------
+{{MESSAGE_OR_NONE}}
+
+================================================
+Kérjük, vegye fel a kapcsolatot a vendéggel mielőbb!
+
+Ez egy automatikus értesítés a Dózsa Apartman Szeged weboldaláról.

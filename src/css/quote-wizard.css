@@ -1,0 +1,593 @@
+/**
+ * Quote Request Wizard - Brown Theme
+ * Dózsa Apartman Szeged
+ */
+
+/* ==========================================
+   GENERAL WIZARD STYLES
+   ========================================== */
+
+.quote-wizard {
+    min-height: 400px;
+    position: relative;
+}
+
+.quote-tag {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--primary-brown);
+    margin: 0 8px;
+}
+
+.quote-tag-separator {
+    color: var(--primary-brown);
+    font-size: 14px;
+}
+
+.wizard-closed {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.btn-large {
+    font-size: 20px !important;
+    padding: 18px 50px !important;
+}
+
+/* ==========================================
+   STEP 1: GUEST SELECTOR CARD
+   ========================================== */
+
+.guest-card {
+    background-color: var(--bg-light);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: var(--text-dark);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    transition: color 0.3s ease;
+}
+
+.card-close:hover {
+    color: var(--primary-brown);
+}
+
+.guest-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--primary-brown);
+    text-align: center;
+    margin-bottom: 30px;
+    padding-right: 40px;
+}
+
+.guest-selector {
+    margin-bottom: 20px;
+}
+
+.guest-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.guest-row:last-of-type {
+    border-bottom: none;
+}
+
+.guest-row label {
+    font-size: 18px;
+    color: var(--text-darker);
+    font-weight: 500;
+}
+
+.guest-counter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.counter-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-brown);
+    background-color: transparent;
+    color: var(--primary-brown);
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.counter-btn:hover {
+    background-color: var(--primary-brown);
+    color: var(--white);
+}
+
+.counter-value {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-darker);
+    min-width: 30px;
+    text-align: center;
+}
+
+.guest-note {
+    font-size: 13px;
+    color: var(--text-dark);
+    font-style: italic;
+    margin: 15px 0 0;
+    text-align: center;
+}
+
+/* ==========================================
+   STEP 2: CALENDAR
+   ========================================== */
+
+.calendar-container {
+    background-color: var(--bg-light);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.calendar-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.calendar-mobile {
+    margin-bottom: 30px;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-nav {
+    background: none;
+    border: 2px solid var(--primary-brown);
+    color: var(--primary-brown);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendar-nav:hover {
+    background-color: var(--primary-brown);
+    color: var(--white);
+}
+
+.calendar-month-container {
+    text-align: center;
+}
+
+.calendar-month {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--primary-brown);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+}
+
+.calendar-weekday {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    padding: 8px 0;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--text-darker);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--white);
+}
+
+.calendar-day:hover:not(.calendar-day-disabled) {
+    background-color: var(--secondary-beige);
+    transform: scale(1.05);
+}
+
+.calendar-day-empty {
+    background: none;
+    cursor: default;
+}
+
+.calendar-day-disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+}
+
+.calendar-day-checkin,
+.calendar-day-checkout {
+    background-color: var(--primary-brown);
+    color: var(--white);
+    font-weight: 700;
+}
+
+.calendar-day-in-range {
+    background-color: rgba(139, 69, 19, 0.2);
+}
+
+/* Calendar Summary Bar */
+.calendar-summary {
+    background-color: rgba(139, 69, 19, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.summary-value {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-brown);
+}
+
+.status-message {
+    text-align: center;
+    color: var(--primary-brown);
+    font-size: 15px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* ==========================================
+   STEP 3: CONTACT FORM
+   ========================================== */
+
+.form-card {
+    background-color: var(--bg-light);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.form-summary {
+    background-color: var(--white);
+    border-left: 4px solid var(--primary-brown);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.form-summary h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--primary-brown);
+    margin-bottom: 15px;
+}
+
+.form-summary p {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: var(--text-darker);
+}
+
+.form-summary strong {
+    color: var(--primary-brown);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-darker);
+    margin-bottom: 8px;
+}
+
+.required {
+    color: var(--primary-brown);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid var(--secondary-beige-dark);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Lora', serif;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-brown);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.form-input::placeholder {
+    color: #aaa;
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ==========================================
+   STEP 4: RESULT
+   ========================================== */
+
+.result-card {
+    background-color: var(--bg-light);
+    border-radius: 15px;
+    padding: 60px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.result-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.result-card.success .result-icon {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.result-card.error .result-icon {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.result-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--primary-brown);
+    margin-bottom: 15px;
+}
+
+.result-card p {
+    font-size: 16px;
+    color: var(--text-darker);
+    margin-bottom: 12px;
+}
+
+.result-note {
+    font-size: 15px;
+    color: var(--text-dark);
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.result-note a {
+    color: var(--primary-brown);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+/* ==========================================
+   WIZARD ACTIONS (BUTTONS)
+   ========================================== */
+
+.wizard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-wizard-primary,
+.btn-wizard-secondary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 40px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-wizard-primary {
+    background-color: var(--primary-brown);
+    color: var(--white);
+}
+
+.btn-wizard-primary:hover:not(:disabled) {
+    background-color: var(--primary-brown-lighter);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+.btn-wizard-primary:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-wizard-secondary {
+    background-color: transparent;
+    color: var(--primary-brown);
+    border: 2px solid var(--primary-brown);
+}
+
+.btn-wizard-secondary:hover {
+    background-color: var(--primary-brown);
+    color: var(--white);
+}
+
+/* ==========================================
+   ERROR MESSAGES
+   ========================================== */
+
+.error-message {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ==========================================
+   RESPONSIVE STYLES
+   ========================================== */
+
+@media (max-width: 767px) {
+    .guest-card,
+    .calendar-container,
+    .form-card,
+    .result-card {
+        padding: 30px 20px;
+    }
+
+    .guest-title {
+        font-size: 20px;
+        padding-right: 30px;
+    }
+
+    .calendar-duo {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .summary-label {
+        font-size: 12px;
+    }
+
+    .summary-value {
+        font-size: 16px;
+    }
+
+    .wizard-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-wizard-primary,
+    .btn-wizard-secondary {
+        width: 100%;
+    }
+
+    .form-summary {
+        padding: 15px;
+    }
+
+    .form-summary p {
+        font-size: 14px;
+    }
+
+    .result-card {
+        padding: 40px 20px;
+    }
+
+    .result-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-day {
+        font-size: 14px;
+    }
+
+    .calendar-weekday {
+        font-size: 12px;
+    }
+
+    .counter-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+
+    .guest-row label {
+        font-size: 16px;
+    }
+
+    .counter-value {
+        font-size: 18px;
+    }
+}

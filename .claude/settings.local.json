@@ -18,7 +18,13 @@
       "Bash(ss:*)",
       "Bash(npx vite:*)",
       "Bash(lsof:*)",
-      "Bash(/dev/null)"
+      "Bash(/dev/null)",
+      "Bash(./docker-start.sh:*)",
+      "Bash(docker-compose logs:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(git checkout:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_click"
     ],
     "deny": [],
     "ask": []

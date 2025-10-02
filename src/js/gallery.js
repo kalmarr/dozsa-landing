@@ -196,8 +196,8 @@
                 class: 'fas fa-search-plus'
             }));
 
-            link.append(img);
-            item.append(link).append(overlay);
+            link.append(img).append(overlay);
+            item.append(link);
 
             return item;
         },
@@ -228,19 +228,20 @@
                 } catch(e) {
                     console.log('Error destroying lightbox:', e);
                 }
+                this.lightboxInstance = null;
             }
 
             // Create fresh instance
             if (typeof GLightbox !== 'undefined') {
-                // Wait a moment for DOM to settle
-                setTimeout(() => {
-                    this.lightboxInstance = GLightbox({
-                        touchNavigation: true,
-                        loop: true,
-                        autoplayVideos: false
-                    });
-                    console.log('GLightbox initialized with', document.querySelectorAll('.glightbox').length, 'elements');
-                }, 100);
+                this.lightboxInstance = GLightbox({
+                    touchNavigation: true,
+                    loop: true,
+                    autoplayVideos: false,
+                    selector: '.glightbox',
+                    openEffect: 'fade',
+                    closeEffect: 'fade'
+                });
+                console.log('GLightbox initialized with', document.querySelectorAll('.glightbox').length, 'elements');
             } else {
                 console.error('GLightbox library not loaded');
             }
