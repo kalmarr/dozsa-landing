@@ -18,11 +18,15 @@ Nyisd meg a `ftp-config.json` fájlt és írd be az FTP adatokat:
   "host": "ftp.dozsaapartman.hu",
   "user": "your_ftp_username",
   "password": "your_ftp_password",
-  "port": 21,
   "remotePath": "/public_html",
-  "secure": false
+  "secure": "explicit",
+  "passive": true
 }
 ```
+
+**Beállítások magyarázata:**
+- `secure: "explicit"` - FTP over TLS (explicit FTPS)
+- `passive: true` - Passzív mód (firewall-barát)
 
 **FONTOS**: Ez a fájl a `.gitignore`-ban van, így **SOHA nem kerül fel a GitHubra**!
 
@@ -38,19 +42,44 @@ Töltsd ki:
 FTP_HOST=ftp.dozsaapartman.hu
 FTP_USER=your_username
 FTP_PASS=your_password
-FTP_PORT=21
 FTP_REMOTE_PATH=/public_html
+FTP_SECURE=explicit
+FTP_PASSIVE=true
 ```
 
 ## Feltöltés módjai
 
-### Módszer 1: Automatikus deploy script (Linux/Mac)
+### Módszer 1: Automatikus deploy script (Linux/Mac/WSL)
 
+Először telepítsd az `lftp` programot (támogatja az FTPS-t és passzív módot):
+```bash
+# Ubuntu/Debian/WSL
+sudo apt install lftp
+
+# macOS
+brew install lftp
+```
+
+Majd futtasd a deploy scriptet:
 ```bash
 ./deploy.sh
 ```
 
+A script automatikusan:
+- ✅ Csatlakozik FTP over TLS (explicit) protokollal
+- ✅ Passzív módot használ
+- ✅ Feltölti az összes szükséges fájlt
+- ✅ Létrehozza a könyvtár struktúrát
+
 ### Módszer 2: Manuális FTP feltöltés (FileZilla)
+
+**FileZilla beállítások explicit TLS-hez:**
+1. Site Manager → New Site
+2. Protocol: **FTP - File Transfer Protocol**
+3. Encryption: **Require explicit FTP over TLS**
+4. Transfer Settings → Transfer mode: **Passive**
+5. Host: `ftp.dozsaapartman.hu`
+6. Username & Password
 
 Töltsd fel a következő fájlokat:
 
