@@ -10,6 +10,81 @@
 .quote-wizard {
     min-height: 400px;
     position: relative;
+    padding: 40px 0;
+    background-color: var(--bg-light);
+}
+
+/* Background Calendar - Duo Calendar Display */
+.wizard-background-calendar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 900px;
+    width: 90%;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bg-calendar-month {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.bg-calendar-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--primary-brown);
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.bg-calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.bg-calendar-weekdays span {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+    padding: 5px 0;
+}
+
+.bg-calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.bg-calendar-days div {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-darker);
+    font-weight: 500;
+}
+
+.bg-calendar-days div:empty {
+    background-color: transparent;
+}
+
+.quote-wizard > * {
+    position: relative;
+    z-index: 1;
 }
 
 .quote-tag {
@@ -40,7 +115,7 @@
    ========================================== */
 
 .guest-card {
-    background-color: var(--bg-light);
+    background-color: var(--white);
     border-radius: 15px;
     padding: 40px;
     max-width: 600px;
@@ -148,7 +223,7 @@
    ========================================== */
 
 .calendar-container {
-    background-color: var(--bg-light);
+    background-color: var(--white);
     border-radius: 15px;
     padding: 40px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
@@ -231,7 +306,7 @@
     color: var(--text-darker);
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: var(--white);
+    background-color: var(--bg-light);
 }
 
 .calendar-day:hover:not(.calendar-day-disabled) {
@@ -303,7 +378,7 @@
    ========================================== */
 
 .form-card {
-    background-color: var(--bg-light);
+    background-color: var(--white);
     border-radius: 15px;
     padding: 40px;
     max-width: 700px;
@@ -312,7 +387,7 @@
 }
 
 .form-summary {
-    background-color: var(--white);
+    background-color: var(--bg-light);
     border-left: 4px solid var(--primary-brown);
     padding: 20px;
     margin-bottom: 30px;
@@ -382,7 +457,7 @@ textarea.form-input {
    ========================================== */
 
 .result-card {
-    background-color: var(--bg-light);
+    background-color: var(--white);
     border-radius: 15px;
     padding: 60px 40px;
     max-width: 600px;
