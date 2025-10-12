@@ -485,7 +485,7 @@ function showErrorMessage() {
             <div class="result-icon">✕</div>
             <h3>Sajnáljuk</h3>
             <p>Az üzenetet most nem sikerült elküldeni.</p>
-            <p class="result-note">Kérjük, próbálja meg később, vagy hívjon minket: <a href="tel:+36XXXXXXXXX">+36 XX XXX XXXX</a></p>
+            <p class="result-note">Kérjük, próbálja meg később, vagy hívjon minket: <a href="tel:+36703272146">+36 70 327 2146</a></p>
             <button type="button" class="btn-wizard-secondary" onclick="backToContactForm()">Vissza</button>
         </div>
     `;
