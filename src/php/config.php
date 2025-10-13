@@ -5,8 +5,8 @@
  */
 
 // Email Configuration
-define('ADMIN_EMAIL', 'info@dozsaszeged.hu'); // Change this to actual email
-define('FROM_EMAIL', 'noreply@dozsa-apartman-szeged.hu');
+define('ADMIN_EMAIL', 'info@dozsaszeged.hu');
+define('FROM_EMAIL', 'info@dozsaszeged.hu');
 define('FROM_NAME', 'Dózsa Apartman Szeged');
 
 // Site Configuration

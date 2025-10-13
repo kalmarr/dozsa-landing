@@ -3,11 +3,12 @@
  * Dózsa Apartman Szeged
  */
 
+// reCAPTCHA v2 Invisible widget ID
+var recaptchaWizardWidgetId;
+
 // Blocked dates - update this array with actual blocked dates
 const BLOCKED_DATES = [
-    '2025-10-15',
-    '2025-10-16',
-    '2025-10-17'
+
 ];
 
 // State management
@@ -25,6 +26,12 @@ let wizardState = {
     email: '',
     message: ''
 };
+
+// Initialize reCAPTCHA when API is ready (called from index.html)
+function onRecaptchaLoadWizard() {
+    // Widget will be rendered when contact form is shown
+    console.log('reCAPTCHA API loaded for wizard');
+}
 
 // Initialize wizard on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -370,13 +377,34 @@ function showContactForm() {
 
                 <div class="error-message" id="formError" style="display: none;"></div>
 
+                <!-- Invisible reCAPTCHA container -->
+                <div id="recaptcha-wizard"></div>
+
                 <div class="wizard-actions">
                     <button type="button" class="btn-wizard-secondary" onclick="backToCalendar()">Vissza</button>
-                    <button type="submit" class="btn-wizard-primary">Elküld</button>
+                    <button type="submit" class="btn-wizard-primary" id="wizardSubmitBtn">Elküld</button>
                 </div>
             </form>
         </div>
     `;
+
+    // Render reCAPTCHA widget after form is displayed
+    setTimeout(function() {
+        if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
+            try {
+                recaptchaWizardWidgetId = grecaptcha.render('recaptcha-wizard', {
+                    'sitekey': '6LeLt-grAAAAAC5ac9164bwHkMmOYqw3buk90Xvm',
+                    'size': 'invisible',
+                    'badge': 'bottomright',
+                    'callback': onWizardRecaptchaSuccess,
+                    'error-callback': onWizardRecaptchaError
+                });
+                console.log('reCAPTCHA widget rendered for wizard');
+            } catch(e) {
+                console.error('Error rendering reCAPTCHA widget:', e);
+            }
+        }
+    }, 100);
 }
 
 function backToCalendar() {
@@ -419,11 +447,28 @@ function submitQuote(event) {
         return;
     }
 
-    // Submit to server
-    sendQuoteRequest();
+    // Disable submit button
+    const submitBtn = document.getElementById('wizardSubmitBtn');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Küldés...';
+    }
+
+    // Execute reCAPTCHA v2 Invisible
+    try {
+        grecaptcha.execute(recaptchaWizardWidgetId);
+    } catch(error) {
+        console.error('reCAPTCHA execute error:', error);
+        showError('formError', 'Hiba történt a biztonsági ellenőrzésnél. Kérjük, töltse újra az oldalt.');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Elküld';
+        }
+    }
 }
 
-function sendQuoteRequest() {
+// Callback when reCAPTCHA is successful
+function onWizardRecaptchaSuccess(token) {
     // Prepare data
     const quoteData = {
         adults: wizardState.adults,
@@ -437,10 +482,11 @@ function sendQuoteRequest() {
         firstName: wizardState.firstName,
         phone: wizardState.phone,
         email: wizardState.email,
-        message: wizardState.message
+        message: wizardState.message,
+        'g-recaptcha-response': token
     };
 
-    // Send to server (you'll need to create this endpoint)
+    // Send to server
     fetch('/api/quote-request.php', {
         method: 'POST',
         headers: {
@@ -455,11 +501,30 @@ function sendQuoteRequest() {
         } else {
             showErrorMessage();
         }
+        // Reset reCAPTCHA
+        if (typeof grecaptcha !== 'undefined' && recaptchaWizardWidgetId !== undefined) {
+            grecaptcha.reset(recaptchaWizardWidgetId);
+        }
     })
     .catch(error => {
         console.error('Error:', error);
         showErrorMessage();
+        // Reset reCAPTCHA
+        if (typeof grecaptcha !== 'undefined' && recaptchaWizardWidgetId !== undefined) {
+            grecaptcha.reset(recaptchaWizardWidgetId);
+        }
     });
+}
+
+// Callback when reCAPTCHA encounters an error
+function onWizardRecaptchaError() {
+    console.error('reCAPTCHA widget error');
+    showError('formError', 'Hiba történt a biztonsági ellenőrzésnél. Kérjük, próbálja újra.');
+    const submitBtn = document.getElementById('wizardSubmitBtn');
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Elküld';
+    }
 }
 
 // STEP 4: Result

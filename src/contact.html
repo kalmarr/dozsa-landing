@@ -121,6 +121,9 @@
 
       gtag('config', 'G-6FCDV949BE');
     </script>
+
+    <!-- Google reCAPTCHA v2 Invisible -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
 </head>
 <body>
 
@@ -235,6 +238,9 @@
                                 </label>
                             </div>
 
+                            <!-- Invisible reCAPTCHA container -->
+                            <div id="recaptcha-contact"></div>
+
                             <button type="submit" class="btn btn-primary btn-lg">
                                 <i class="fas fa-paper-plane me-2"></i>Üzenet küldése
                             </button>
@@ -338,6 +344,94 @@
 
     <!-- Custom JS -->
     <script>
+        // reCAPTCHA v2 Invisible widget ID
+        var recaptchaWidgetId;
+        var formElement;
+        var submitButton;
+
+        // Initialize reCAPTCHA when API is ready
+        function onRecaptchaLoad() {
+            recaptchaWidgetId = grecaptcha.render('recaptcha-contact', {
+                'sitekey': '6LeLt-grAAAAAC5ac9164bwHkMmOYqw3buk90Xvm',
+                'size': 'invisible',
+                'badge': 'bottomright',
+                'callback': onRecaptchaSuccess,
+                'error-callback': onRecaptchaError
+            });
+        }
+
+        // Callback when reCAPTCHA is successful
+        function onRecaptchaSuccess(token) {
+            const messageDiv = $('#formMessage');
+
+            // Add token to form data
+            const formData = new FormData(formElement);
+            formData.append('g-recaptcha-response', token);
+
+            $.ajax({
+                url: 'php/send-contact.php',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response) {
+                    // Check if the response indicates success
+                    if (response && response.success === true) {
+                        messageDiv
+                            .removeClass('alert-danger')
+                            .addClass('alert alert-success')
+                            .html('<i class="fas fa-check-circle me-2"></i>Köszönjük üzenetét! Hamarosan felvesszük Önnel a kapcsolatot.')
+                            .slideDown();
+
+                        $('#contactForm')[0].reset();
+
+                        setTimeout(function() {
+                            messageDiv.slideUp();
+                        }, 5000);
+                    } else {
+                        // Server returned an error message
+                        var errorMsg = (response && response.message) ? response.message : 'Hiba történt az üzenet küldése során. Kérjük, próbálja újra.';
+                        messageDiv
+                            .removeClass('alert-success')
+                            .addClass('alert alert-danger')
+                            .html('<i class="fas fa-exclamation-circle me-2"></i>' + errorMsg)
+                            .slideDown();
+                    }
+
+                    submitButton.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i>Üzenet küldése');
+
+                    // Reset reCAPTCHA
+                    grecaptcha.reset(recaptchaWidgetId);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                    messageDiv
+                        .removeClass('alert-success')
+                        .addClass('alert alert-danger')
+                        .html('<i class="fas fa-exclamation-circle me-2"></i>Hiba történt az üzenet küldése során. Kérjük, próbálja újra.')
+                        .slideDown();
+
+                    submitButton.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i>Üzenet küldése');
+
+                    // Reset reCAPTCHA
+                    grecaptcha.reset(recaptchaWidgetId);
+                }
+            });
+        }
+
+        // Callback when reCAPTCHA encounters an error
+        function onRecaptchaError() {
+            const messageDiv = $('#formMessage');
+            messageDiv
+                .removeClass('alert-success')
+                .addClass('alert alert-danger')
+                .html('<i class="fas fa-exclamation-circle me-2"></i>Hiba történt a biztonsági ellenőrzésnél. Kérjük, próbálja újra.')
+                .slideDown();
+
+            submitButton.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i>Üzenet küldése');
+        }
+
         $(document).ready(function() {
             // Navbar scroll effect
             $(window).on('scroll', function() {
@@ -352,27 +446,27 @@
             $('#contactForm').on('submit', function(e) {
                 e.preventDefault();
 
-                const formData = $(this).serialize();
-                const submitBtn = $(this).find('button[type="submit"]');
+                formElement = this;
+                submitButton = $(this).find('button[type="submit"]');
                 const messageDiv = $('#formMessage');
 
-                submitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Küldés...');
+                // Hide previous messages
+                messageDiv.slideUp();
 
-                // Simulate AJAX request (replace with actual PHP endpoint)
-                setTimeout(function() {
+                submitButton.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Küldés...');
+
+                // Execute reCAPTCHA v2 Invisible
+                try {
+                    grecaptcha.execute(recaptchaWidgetId);
+                } catch (error) {
+                    console.error('reCAPTCHA execution error:', error);
                     messageDiv
-                        .removeClass('alert-danger')
-                        .addClass('alert alert-success')
-                        .html('<i class="fas fa-check-circle me-2"></i>Köszönjük üzenetét! Hamarosan felvesszük Önnel a kapcsolatot.')
+                        .removeClass('alert-success')
+                        .addClass('alert alert-danger')
+                        .html('<i class="fas fa-exclamation-circle me-2"></i>Hiba történt a biztonsági ellenőrzésnél. Kérjük, töltse újra az oldalt.')
                         .slideDown();
-
-                    $('#contactForm')[0].reset();
-                    submitBtn.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i>Üzenet küldése');
-
-                    setTimeout(function() {
-                        messageDiv.slideUp();
-                    }, 5000);
-                }, 1500);
+                    submitButton.prop('disabled', false).html('<i class="fas fa-paper-plane me-2"></i>Üzenet küldése');
+                }
             });
         });
     </script>

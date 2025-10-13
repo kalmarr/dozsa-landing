@@ -4,6 +4,8 @@
  * Dózsa Apartman Szeged
  */
 
+require_once __DIR__ . '/../php/recaptcha-validator.php';
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -25,6 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // Get JSON input
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
+
+// Verify reCAPTCHA
+$recaptchaToken = isset($data['g-recaptcha-response']) ? $data['g-recaptcha-response'] : '';
+$recaptchaResult = verifyRecaptcha($recaptchaToken);
+
+if (!$recaptchaResult['success']) {
+    error_log('reCAPTCHA validation failed for quote request: ' . $recaptchaResult['message']);
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Biztonsági ellenőrzés sikertelen']);
+    exit();
+}
 
 // Validate required fields
 $requiredFields = ['adults', 'checkIn', 'checkOut', 'nights', 'lastName', 'firstName', 'phone', 'email'];
@@ -147,8 +160,8 @@ $adminEmail = str_replace(
 );
 
 // Email settings
-$adminEmailAddress = 'info@dozsaapartman.hu';
-$fromEmail = 'noreply@dozsa-apartman-szeged.hu';
+$adminEmailAddress = 'info@dozsaszeged.hu';
+$fromEmail = 'info@dozsaszeged.hu';
 $fromName = 'Dózsa Apartman Szeged';
 
 // Send email to customer
@@ -157,7 +170,10 @@ $customerHeaders = [
     'MIME-Version: 1.0',
     'Content-type: text/html; charset=UTF-8',
     "From: $fromName <$fromEmail>",
-    "Reply-To: $adminEmailAddress"
+    "Reply-To: $adminEmailAddress",
+    'X-Mailer: PHP/' . phpversion(),
+    'X-Priority: 3',
+    'Message-ID: <' . time() . '-' . md5($email) . '@dozsa-apartman-szeged.hu>'
 ];
 
 $customerSent = mail(
@@ -167,13 +183,19 @@ $customerSent = mail(
     implode("\r\n", $customerHeaders)
 );
 
+// Log customer email result
+error_log('Quote request - Customer email sent to ' . $email . ': ' . ($customerSent ? 'SUCCESS' : 'FAILED'));
+
 // Send email to admin
 $adminSubject = "ÚJ AJÁNLATKÉRÉS: $lastName $firstName - $checkInFormatted";
 $adminHeaders = [
     'MIME-Version: 1.0',
     'Content-type: text/plain; charset=UTF-8',
     "From: $fromName <$fromEmail>",
-    "Reply-To: $email"
+    "Reply-To: $email",
+    'X-Mailer: PHP/' . phpversion(),
+    'X-Priority: 1',
+    'Message-ID: <' . time() . '-admin-' . md5($email) . '@dozsa-apartman-szeged.hu>'
 ];
 
 $adminSent = mail(
@@ -182,6 +204,9 @@ $adminSent = mail(
     $adminEmail,
     implode("\r\n", $adminHeaders)
 );
+
+// Log admin email result
+error_log('Quote request - Admin email sent to ' . $adminEmailAddress . ': ' . ($adminSent ? 'SUCCESS' : 'FAILED'));
 
 // Check if emails were sent successfully
 if ($customerSent && $adminSent) {

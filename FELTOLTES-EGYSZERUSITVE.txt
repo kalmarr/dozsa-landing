@@ -1,0 +1,99 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    JAVÍTÁSOK FELTÖLTÉSE - EGYSZERŰ ÚTMUTATÓ                  ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📤 HÁROM FÁJL KELL FELTÖLTENI:
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Fájl:  src/contact.html
+   Hova:  /var/www/clients/client0/web9/web/contact.html
+   Miért: Contact form reCAPTCHA javítás
+
+2. Fájl:  src/css/style.css
+   Hova:  /var/www/clients/client0/web9/web/css/style.css
+   Miért: reCAPTCHA badge elrejtése + checkbox láthatóvá tétele
+
+3. Fájl:  src/js/wizard.js
+   Hova:  /var/www/clients/client0/web9/web/js/wizard.js
+   Miért: Ajánlatkérés wizard reCAPTCHA javítás
+
+
+🧪 TESZTELÉS:
+═══════════════════════════════════════════════════════════════════════════════
+
+A) CONTACT FORM TESZT:
+──────────────────────
+1. Nyisd meg: https://dozsa-apartman-szeged.hu/contact.html
+2. Töltsd ki az űrlapot:
+   - Név: [tesztnév]
+   - Email: [valódi email címed]
+   - Üzenet: "Teszt üzenet"
+   - Pipáld ki az adatvédelmi nyilatkozatot
+
+3. Kattints: "Üzenet küldése"
+
+4. VÁRD MEG a visszajelzést:
+   ✅ Zöld üzenet: "Köszönjük üzenetét! Hamarosan felvesszük Önnel a kapcsolatot."
+   ❌ Piros üzenet: valami hiba van
+
+5. Ellenőrizd a postaládádat (info@dozsaszeged.hu):
+   - 1 email NEKED (visszaigazolás)
+   - 1 email a TŐD (az üzenet)
+
+B) AJÁNLATKÉRÉS reCAPTCHA BADGE TESZT:
+──────────────────────────────────────
+1. Nyisd meg: https://dozsa-apartman-szeged.hu/index.html#ajanlatkeres
+2. Klikkelj az "Ajánlatkérés" gombra
+3. Töltsd ki az űrlapot végig (vendégek, dátumok, személyes adatok)
+4. Az utolsó lépésnél ellenőrizd a **kék reCAPTCHA badge-et**:
+   ✅ Jobb alsó részen van (balra tolva)
+   ✅ NEM takarja ki az "Elküld" vagy "Vissza" gombokat
+   ❌ Ha kitakarja a gombokat = rossz
+
+
+✅ MI VOLT A HIBA?
+═══════════════════════════════════════════════════════════════════════════════
+
+1. CONTACT FORM:
+   - A reCAPTCHA JavaScript kód hibás volt
+   - RÉGI: grecaptcha.ready() + execute() → NEM működött
+   - ÚJ:  grecaptcha.execute() közvetlenül → MŰKÖDIK
+   - Plusz a válaszkezelés sem volt jó (nem nézte a success mezőt)
+
+2. AJÁNLATKÉRÉS WIZARD:
+   - UGYANAZ a hiba, mint a contact form-nál
+   - RÉGI: grecaptcha.ready() + execute() → NEM működött
+   - ÚJ:  grecaptcha.execute() közvetlenül → MŰKÖDIK
+   - Ezért nem küldte el az ajánlatkérést
+
+3. reCAPTCHA BADGE POZÍCIÓ:
+   - A badge az űrlap közepén jelent meg (üzenet mezőben)
+   - Kitakarta az "Elküld" és "Vissza" gombokat
+   - Invisible reCAPTCHA-nál a badge-et nem kell látni
+   - Megoldás: visibility: hidden CSS-sel
+
+4. CHECKBOX NEM LÁTSZIK:
+   - A "Elfogadom az adatvédelmi szabályzatot" checkbox túl kicsi
+   - Bootstrap 5 alapértelmezett stílus alig látható
+   - Megoldás: Nagyobb checkbox (20x20px) barna kerettel
+
+
+📋 HA MŰKÖDIK:
+═══════════════════════════════════════════════════════════════════════════════
+
+Törölheted ezeket a fájlokat (nem kellenek már):
+- debug-recaptcha.html
+- test-contact.js
+- test-contact-local.js
+- test-final.js
+- test-debug.js
+- debug-recaptcha.js
+- RECAPTCHA_SETUP.md
+- DEBUG-UTMUTATO.md
+- FELTOLTES-LISTA.txt (régi)
+- dozsa-recaptcha-fix.tar.gz
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Kérdés esetén írj! 🙂

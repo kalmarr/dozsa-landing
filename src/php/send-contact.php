@@ -4,7 +4,8 @@
  * Processes contact form submissions with validation and spam protection
  */
 
-require_once 'config.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/recaptcha-validator.php';
 
 // Set JSON response header
 header('Content-Type: application/json');
@@ -109,6 +110,15 @@ try {
         sendResponse(false, MSG_SPAM_DETECTED);
     }
 
+    // Verify reCAPTCHA
+    $recaptchaToken = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
+    $recaptchaResult = verifyRecaptcha($recaptchaToken);
+
+    if (!$recaptchaResult['success']) {
+        error_log('reCAPTCHA validation failed: ' . $recaptchaResult['message']);
+        sendResponse(false, 'Biztonsági ellenőrzés sikertelen. Kérjük, próbálja újra.');
+    }
+
     // Get and sanitize form data
     $name = isset($_POST['name']) ? sanitizeInput($_POST['name']) : '';
     $email = isset($_POST['email']) ? sanitizeInput($_POST['email']) : '';
@@ -154,12 +164,17 @@ try {
     $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
     $headers[] = 'X-Mailer: PHP/' . phpversion();
     $headers[] = 'Content-Type: text/plain; charset=UTF-8';
+    $headers[] = 'X-Priority: 1';
+    $headers[] = 'Message-ID: <' . time() . '-admin-' . md5($email) . '@dozsa-apartman-szeged.hu>';
 
-    // Send email
+    // Send email to admin
     $mailSent = mail($to, $emailSubject, $emailBody, implode("\r\n", $headers));
 
+    // Log admin email result
+    error_log('Contact form - Admin email sent to ' . $to . ': ' . ($mailSent ? 'SUCCESS' : 'FAILED'));
+
     if ($mailSent) {
-        // Optional: Send confirmation email to user
+        // Send confirmation email to user
         $confirmationSubject = 'Köszönjük üzenetét - ' . SITE_NAME;
         $confirmationBody = "Kedves " . $name . "!\n\n";
         $confirmationBody .= "Köszönjük, hogy felkereste a " . SITE_NAME . "-t!\n\n";
@@ -171,8 +186,14 @@ try {
         $confirmationHeaders = [];
         $confirmationHeaders[] = 'From: ' . FROM_NAME . ' <' . FROM_EMAIL . '>';
         $confirmationHeaders[] = 'Content-Type: text/plain; charset=UTF-8';
+        $confirmationHeaders[] = 'X-Mailer: PHP/' . phpversion();
+        $confirmationHeaders[] = 'X-Priority: 3';
+        $confirmationHeaders[] = 'Message-ID: <' . time() . '-' . md5($email) . '@dozsa-apartman-szeged.hu>';
 
-        mail($email, $confirmationSubject, $confirmationBody, implode("\r\n", $confirmationHeaders));
+        $confirmationSent = mail($email, $confirmationSubject, $confirmationBody, implode("\r\n", $confirmationHeaders));
+
+        // Log confirmation email result
+        error_log('Contact form - Confirmation email sent to ' . $email . ': ' . ($confirmationSent ? 'SUCCESS' : 'FAILED'));
 
         sendResponse(true, MSG_SUCCESS);
     } else {

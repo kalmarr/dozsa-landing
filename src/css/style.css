@@ -947,3 +947,41 @@ html {
     border-color: #f5c6cb;
     color: #721c24;
 }
+
+/* ==========================================
+   reCAPTCHA BADGE FIX
+   ========================================== */
+
+/* Hide reCAPTCHA badge completely - invisible reCAPTCHA doesn't need visible badge */
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
+
+/* ==========================================
+   CHECKBOX FIX - Make checkbox visible
+   ========================================== */
+
+/* Make checkbox larger and more visible */
+.form-check-input {
+    width: 20px !important;
+    height: 20px !important;
+    margin-top: 0.15em !important;
+    border: 2px solid var(--primary-brown) !important;
+    cursor: pointer !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-brown) !important;
+    border-color: var(--primary-brown) !important;
+}
+
+.form-check-input:focus {
+    border-color: var(--primary-brown) !important;
+    box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25) !important;
+}
+
+.form-check-label {
+    cursor: pointer !important;
+    user-select: none !important;
+    padding-left: 0.5rem !important;
+}
