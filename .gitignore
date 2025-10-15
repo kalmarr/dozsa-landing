@@ -19,6 +19,12 @@ Thumbs.db
 # Claude
 .claude/
 
+# Node
+node_modules/
+
+# Playwright
+.playwright-mcp/
+
 # FTP credentials - NEVER commit these!
 .env
 ftp-config.json

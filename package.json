@@ -1,0 +1,23 @@
+{
+  "name": "dozsa-landing",
+  "version": "1.0.0",
+  "description": "Modern, reszponzív weboldal a Dózsa Apartman Szeged számára, polgári elegancia stílusban.",
+  "main": "debug-recaptcha.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalmarr/dozsa-landing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kalmarr/dozsa-landing/issues"
+  },
+  "homepage": "https://github.com/kalmarr/dozsa-landing#readme",
+  "dependencies": {
+    "playwright": "^1.56.0"
+  }
+}

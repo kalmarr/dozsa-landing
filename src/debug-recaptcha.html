@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reCAPTCHA Debug - Contact Form</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4ec9b0;
+        }
+        .section {
+            background: #252526;
+            border: 1px solid #3e3e42;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .success {
+            color: #4ec9b0;
+        }
+        .error {
+            color: #f48771;
+        }
+        .warning {
+            color: #dcdcaa;
+        }
+        pre {
+            background: #1e1e1e;
+            border: 1px solid #3e3e42;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        button {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 10px 5px 10px 0;
+        }
+        button:hover {
+            background: #1177bb;
+        }
+        #output {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 reCAPTCHA Debug Tool - Contact Form</h1>
+
+    <div class="section">
+        <h3>Tesztelés:</h3>
+        <button onclick="runDebug()">▶️ Diagnosztika futtatása</button>
+        <button onclick="testContactFormWidget()">🧪 Contact form widget tesztelése</button>
+        <button onclick="copyOutput()">📋 Eredmény másolása</button>
+    </div>
+
+    <div class="section">
+        <h3>Eredmény:</h3>
+        <pre id="output">Kattints a "Diagnosztika futtatása" gombra...</pre>
+    </div>
+
+    <script>
+        let outputText = '';
+
+        function log(text, className = '') {
+            const line = text + '\n';
+            outputText += line;
+            const output = document.getElementById('output');
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = line;
+            output.appendChild(span);
+        }
+
+        function clearOutput() {
+            outputText = '';
+            document.getElementById('output').innerHTML = '';
+        }
+
+        function runDebug() {
+            clearOutput();
+            log('=== reCAPTCHA DIAGNOSZTIKA ===\n', 'warning');
+            log('Időpont: ' + new Date().toLocaleString('hu-HU'));
+            log('URL: ' + window.location.href);
+            log('');
+
+            // Check 1: grecaptcha object
+            log('1. grecaptcha object:', 'warning');
+            if (typeof grecaptcha !== 'undefined') {
+                log('   ✅ LOADED', 'success');
+                log('   - grecaptcha.render: ' + typeof grecaptcha.render);
+                log('   - grecaptcha.execute: ' + typeof grecaptcha.execute);
+                log('   - grecaptcha.ready: ' + typeof grecaptcha.ready);
+                log('   - grecaptcha.reset: ' + typeof grecaptcha.reset);
+            } else {
+                log('   ❌ NOT LOADED', 'error');
+            }
+            log('');
+
+            // Check 2: onRecaptchaLoad function
+            log('2. onRecaptchaLoad function:', 'warning');
+            log('   ' + (typeof onRecaptchaLoad !== 'undefined' ? '✅ DEFINED' : '❌ NOT DEFINED'),
+                typeof onRecaptchaLoad !== 'undefined' ? 'success' : 'error');
+            log('');
+
+            // Check 3: recaptchaWidgetId
+            log('3. recaptchaWidgetId:', 'warning');
+            if (typeof recaptchaWidgetId !== 'undefined') {
+                log('   ✅ SET: ' + recaptchaWidgetId, 'success');
+            } else {
+                log('   ❌ NOT SET', 'error');
+            }
+            log('');
+
+            // Check 4: Container
+            log('4. reCAPTCHA container (#recaptcha-contact):', 'warning');
+            const container = document.getElementById('recaptcha-contact');
+            if (container) {
+                log('   ✅ EXISTS', 'success');
+                log('   - Children count: ' + container.children.length);
+                log('   - innerHTML length: ' + container.innerHTML.length);
+                if (container.innerHTML.length > 0) {
+                    log('   - First 100 chars: ' + container.innerHTML.substring(0, 100));
+                }
+            } else {
+                log('   ❌ NOT FOUND', 'error');
+            }
+            log('');
+
+            // Check 5: Badge
+            log('5. reCAPTCHA badge (.grecaptcha-badge):', 'warning');
+            const badge = document.querySelector('.grecaptcha-badge');
+            if (badge) {
+                log('   ✅ FOUND', 'success');
+                log('   - Display: ' + badge.style.display);
+                log('   - Visibility: ' + badge.style.visibility);
+            } else {
+                log('   ❌ NOT FOUND', 'error');
+            }
+            log('');
+
+            // Check 6: Script tag
+            log('6. reCAPTCHA API script:', 'warning');
+            const scripts = Array.from(document.getElementsByTagName('script'));
+            const recaptchaScript = scripts.find(s => s.src && s.src.includes('recaptcha/api.js'));
+            if (recaptchaScript) {
+                log('   ✅ LOADED', 'success');
+                log('   - Source: ' + recaptchaScript.src);
+                log('   - Async: ' + recaptchaScript.async);
+                log('   - Defer: ' + recaptchaScript.defer);
+            } else {
+                log('   ❌ NOT LOADED', 'error');
+            }
+            log('');
+
+            // Check 7: Form
+            log('7. Contact form (#contactForm):', 'warning');
+            const form = document.getElementById('contactForm');
+            log('   ' + (form ? '✅ EXISTS' : '❌ NOT FOUND'), form ? 'success' : 'error');
+            log('');
+
+            // Check 8: Try to get token
+            log('8. Token teszt:', 'warning');
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.ready) {
+                try {
+                    grecaptcha.ready(function() {
+                        log('   - grecaptcha.ready callback: ✅ EXECUTED', 'success');
+
+                        if (typeof recaptchaWidgetId !== 'undefined') {
+                            try {
+                                const response = grecaptcha.getResponse(recaptchaWidgetId);
+                                if (response) {
+                                    log('   ✅ HAS TOKEN (length: ' + response.length + ')', 'success');
+                                } else {
+                                    log('   ⚠️ NO TOKEN (widget rendered but not executed yet)', 'warning');
+                                }
+                            } catch(e) {
+                                log('   ❌ getResponse error: ' + e.message, 'error');
+                            }
+                        } else {
+                            log('   ❌ Widget ID not set - widget was never rendered!', 'error');
+                        }
+                    });
+                } catch(e) {
+                    log('   ❌ Error: ' + e.message, 'error');
+                }
+            } else {
+                log('   ❌ Cannot test: grecaptcha not ready', 'error');
+            }
+            log('');
+
+            log('=== DIAGNOSZTIKA VÉGE ===', 'warning');
+        }
+
+        function testContactFormWidget() {
+            clearOutput();
+            log('=== CONTACT FORM WIDGET TESZT ===\n', 'warning');
+
+            if (typeof grecaptcha === 'undefined') {
+                log('❌ HIBA: grecaptcha nincs betöltve!', 'error');
+                log('Először töltsd be a contact.html oldalt!', 'error');
+                return;
+            }
+
+            log('Próbálom renderelni a widgetet...\n');
+
+            // Check if container exists
+            let container = document.getElementById('recaptcha-test');
+            if (!container) {
+                log('Container létrehozása...');
+                container = document.createElement('div');
+                container.id = 'recaptcha-test';
+                document.body.appendChild(container);
+            }
+
+            try {
+                const testWidgetId = grecaptcha.render('recaptcha-test', {
+                    'sitekey': '6LeLt-grAAAAAC5ac9164bwHkMmOYqw3buk90Xvm',
+                    'size': 'invisible',
+                    'badge': 'bottomright',
+                    'callback': function(token) {
+                        log('\n✅ SUCCESS! Token generálva:', 'success');
+                        log('Token hossz: ' + token.length, 'success');
+                        log('Token (első 50 karakter): ' + token.substring(0, 50) + '...', 'success');
+                    },
+                    'error-callback': function() {
+                        log('\n❌ ERROR! reCAPTCHA hiba történt', 'error');
+                    }
+                });
+
+                log('✅ Widget ID: ' + testWidgetId, 'success');
+                log('\nWidget execute próba...\n');
+
+                setTimeout(function() {
+                    try {
+                        grecaptcha.execute(testWidgetId);
+                        log('✅ execute() meghívva - várd a callback-et...', 'success');
+                    } catch(e) {
+                        log('❌ execute() hiba: ' + e.message, 'error');
+                    }
+                }, 500);
+
+            } catch(e) {
+                log('❌ HIBA a widget rendereléskor:', 'error');
+                log(e.message, 'error');
+                log('\nEz általában azt jelenti hogy:', 'warning');
+                log('- Hibás site key', 'warning');
+                log('- A container már használatban van', 'warning');
+                log('- reCAPTCHA API nem elérhető', 'warning');
+            }
+        }
+
+        function copyOutput() {
+            const output = document.getElementById('output');
+            const text = output.innerText;
+
+            navigator.clipboard.writeText(text).then(function() {
+                alert('✅ Eredmény vágólapra másolva!\nMost küldd el nekem a teljes szöveget.');
+            }, function(err) {
+                alert('❌ Másolás sikertelen. Válaszd ki és másold ki manuálisan (Ctrl+C).');
+            });
+        }
+    </script>
+</body>
+</html>
