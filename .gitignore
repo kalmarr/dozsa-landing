@@ -27,5 +27,42 @@ node_modules/
 
 # FTP credentials - NEVER commit these!
 .env
+.env.local
+.env.*.local
 ftp-config.json
 deploy-config.json
+
+# ISPConfig struktúra - FONTOS!
+private/.env              # Production/dev környezeti változók (SOHA ne commitolj!)
+
+# Legacy struktúrák (archivált)
+_legacy/
+
+# Deployment
+*.tar.gz
+*.zip
+*.bak
+*.backup
+
+# Security files
+*.pem
+*.key
+*.crt
+*.csr
+
+# Build outputs
+dist/
+build/
+*.min.js
+*.min.css
+
+# PHP
+vendor/
+composer.lock
+
+# Backup files
+*.tar.gz
+images-backup-*.tar.gz
+
+# Legacy archived folders
+_legacy/

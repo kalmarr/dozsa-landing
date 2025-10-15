@@ -19,11 +19,27 @@ Az alkalmazás Google reCAPTCHA v2 Invisible-t használ spam és bot védelem c�
 Ez a kulcs már be van ágyazva a HTML fájlokba és JavaScript kódba.
 
 ### Secret Key (Szerver kulcs)
-```
-6LeLt-grAAAAAP2LaXGZmrHMEAqy1dckAmJV2BD5
-```
 
-Ez a kulcs a `src/php/recaptcha-validator.php` fájlban van tárolva.
+**FONTOS BIZTONSÁGI MEGJEGYZÉS:**
+A Secret Key-t SOHA ne tárold verziókezelőben vagy nyilvános fájlokban!
+
+A Secret Key-t a következő helyeken kell beállítani:
+
+#### Opció 1: .env fájl (Fejlesztéshez)
+1. Másold a `.env.example` fájlt `.env` néven
+2. Állítsd be a `RECAPTCHA_SECRET_KEY` értékét
+3. A `.env` fájl automatikusan betöltődik (lásd: `src/php/config.php`)
+
+#### Opció 2: ISPConfig Environment Variables (Production)
+1. ISPConfig Admin Panel → Websites → Options
+2. Állítsd be a `RECAPTCHA_SECRET_KEY` környezeti változót
+3. A rendszer automatikusan olvassa ezt
+
+**Új kulcsok generálása:**
+1. Látogasd meg: [Google reCAPTCHA Admin Console](https://www.google.com/recaptcha/admin)
+2. Generálj új kulcspárt (v2 Invisible)
+3. Állítsd be a domain-eket
+4. Másold ki a Secret Key-t és állítsd be a fenti módok egyikével
 
 ## Hogyan működik?
 
