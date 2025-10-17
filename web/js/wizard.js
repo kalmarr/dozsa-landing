@@ -393,7 +393,7 @@ function showContactForm() {
         if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
             try {
                 recaptchaWizardWidgetId = grecaptcha.render('recaptcha-wizard', {
-                    'sitekey': '6LeLt-grAAAAAC5ac9164bwHkMmOYqw3buk90Xvm',
+                    'sitekey': '6LegDO4rAAAAADciP3tnJHtc35fF0X-94s_dPe1R',
                     'size': 'invisible',
                     'badge': 'bottomright',
                     'callback': onWizardRecaptchaSuccess,

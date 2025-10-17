@@ -90,7 +90,7 @@ function env($key, $default = null) {
 }
 
 // Google reCAPTCHA Configuration
-define('RECAPTCHA_SITE_KEY', env('RECAPTCHA_SITE_KEY', '6LeLt-grAAAAAC5ac9164bwHkMmOYqw3buk90Xvm'));
+define('RECAPTCHA_SITE_KEY', env('RECAPTCHA_SITE_KEY', ''));
 define('RECAPTCHA_SECRET_KEY', env('RECAPTCHA_SECRET_KEY', ''));
 
 // Email Configuration
@@ -131,7 +131,10 @@ define('MSG_SPAM_DETECTED', 'Spamszerű tevékenység észlelve.');
 // Timezone
 date_default_timezone_set('Europe/Budapest');
 
-// Biztonsági ellenőrzés - Ha nincs secret key, hibát logolunk
+// Biztonsági ellenőrzés - Ha nincs site key vagy secret key, hibát logolunk
+if (empty(RECAPTCHA_SITE_KEY)) {
+    error_log('CRITICAL: RECAPTCHA_SITE_KEY is not configured! Please set it in .env or ISPConfig environment variables.');
+}
 if (empty(RECAPTCHA_SECRET_KEY)) {
     error_log('CRITICAL: RECAPTCHA_SECRET_KEY is not configured! Please set it in .env or ISPConfig environment variables.');
 }

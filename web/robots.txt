@@ -1,0 +1,17 @@
+# Dózsa Apartman Szeged - robots.txt
+# https://dozsa-apartman-szeged.hu/robots.txt
+
+User-agent: *
+Allow: /
+
+# Exclude error pages from crawling
+Disallow: /error/
+
+# Exclude API endpoints and templates
+Disallow: /api/
+
+# Exclude PHP configuration files
+Disallow: /php/
+
+# Sitemap location
+Sitemap: https://dozsa-apartman-szeged.hu/sitemap.xml

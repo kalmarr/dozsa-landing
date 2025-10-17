@@ -4,7 +4,9 @@
   "description": "Modern, reszponzív weboldal a Dózsa Apartman Szeged számára, polgári elegancia stílusban.",
   "main": "debug-recaptcha.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sitemap": "node generate-sitemap.js",
+    "sitemap:watch": "nodemon --watch web --ext html,js generate-sitemap.js"
   },
   "repository": {
     "type": "git",
